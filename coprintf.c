@@ -21,7 +21,7 @@
 #endif
 
 /* set modes, do nothing if inactive */
-static int set_mode(FILE* fp, char* dest, const char* mode)
+static size_t set_mode(FILE* fp, char* dest, const char* mode)
 {
 	if(inactive
 #ifndef _WIN32 
@@ -31,7 +31,7 @@ static int set_mode(FILE* fp, char* dest, const char* mode)
 	)
 		return 0;
 
-	strcat(dest, mode);
+	strcat_s(dest,strlen(dest), mode);
 	return strlen(mode);
 }
 
@@ -41,30 +41,30 @@ static int covprintf(FILE* fp, const char* fmt, va_list parg)
 {
 	/* mode strings definition */
 
-	static const char* black	= "\e[30m";
-	static const char* red		= "\e[31m";
-	static const char* green	= "\e[32m";
-	static const char* yellow	= "\e[33m";
-	static const char* blue		= "\e[34m";
-	static const char* purple	= "\e[35m";
-	static const char* cyan		= "\e[36m";
-	static const char* white	= "\e[37m";
+	static const char* black	= "\033[30m";
+	static const char* red		= "\033[31m";
+	static const char* green	= "\033[32m";
+	static const char* yellow	= "\033[33m";
+	static const char* blue		= "\033[34m";
+	static const char* purple	= "\033[35m";
+	static const char* cyan		= "\033[36m";
+	static const char* white	= "\033[37m";
 
-	static const char* b_black	= "\e[40m";
-	static const char* b_red	= "\e[41m";
-	static const char* b_green	= "\e[42m";
-	static const char* b_yellow	= "\e[43m";
-	static const char* b_blue	= "\e[44m";
-	static const char* b_purple	= "\e[45m";
-	static const char* b_cyan	= "\e[46m";
-	static const char* b_white	= "\e[47m";
+	static const char* b_black	= "\033[40m";
+	static const char* b_red	= "\033[41m";
+	static const char* b_green	= "\033[42m";
+	static const char* b_yellow	= "\033[43m";
+	static const char* b_blue	= "\033[44m";
+	static const char* b_purple	= "\033[45m";
+	static const char* b_cyan	= "\033[46m";
+	static const char* b_white	= "\033[47m";
 
-	static const char* done		= "\e[0m";
-	static const char* highlight= "\e[1m";
-	static const char* underline= "\e[4m";
-	static const char* blink	= "\e[5m";
-	static const char* reverse	= "\e[7m";
-	static const char* invisible= "\e[8m";
+	static const char* done		= "\033[0m";
+	static const char* highlight= "\033[1m";
+	static const char* underline= "\033[4m";
+	static const char* blink	= "\033[5m";
+	static const char* reverse	= "\033[7m";
+	static const char* invisible= "\033[8m";
 
 	/* too long origin format string, give up */
 
