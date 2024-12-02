@@ -31,7 +31,7 @@ static size_t set_mode(FILE* fp, char* dest, const char* mode)
 	)
 		return 0;
 
-	strcat_s(dest,strlen(dest), mode);
+	strcat(dest, mode);
 	return strlen(mode);
 }
 
