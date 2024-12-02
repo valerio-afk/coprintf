@@ -2,6 +2,10 @@
 
 Colorful printf for C Code ( ascii color only ), decorate your terminal with more colors.
 
+## My fork
+
+I just made a few edits to have this library cross-platform
+
 ### Overview ###
 
 A light, self-adapting wrapper of `printf` with several useful features, makes easy work for changing **foreground**, **background** and **text action** ( highlight, underline, blink ... ) . It makes you easy to enable and disable colorizing in your c&cpp's output.

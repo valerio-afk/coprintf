@@ -1,4 +1,6 @@
-#include <unistd.h>
+#ifndef _WIN32 
+	#include <unistd.h>
+#endif
 #include <stdarg.h>
 #include <string.h>
 #include "coprintf.h"
@@ -22,8 +24,11 @@
 static int set_mode(FILE* fp, char* dest, const char* mode)
 {
 	if(inactive
+#ifndef _WIN32 
 		|| (stdout == fp && !isatty(STDOUT_FILENO))
-		|| (stderr == fp && !isatty(STDERR_FILENO)))
+		|| (stderr == fp && !isatty(STDERR_FILENO))
+#endif
+	)
 		return 0;
 
 	strcat(dest, mode);
